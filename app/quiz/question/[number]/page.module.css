@@ -1,0 +1,32 @@
+.questionNumber {
+  text-align: center;
+  display: block;
+  font-size: 24px;
+  margin: 0 auto 0.5em;
+  color: #666;
+}
+
+.questionNumber small {
+  font-size: 0.66em;
+  color: #999;
+  letter-spacing: -0.03em;
+  left: -0.2em;
+  position: relative;
+}
+
+.questionTitle {
+  font-size: 48px;
+  text-align: center;
+  display: block;
+  margin: 0 auto 40px;
+  max-width: 620px;
+  line-height: 1.1;
+  min-width: 620px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 400px;
+}

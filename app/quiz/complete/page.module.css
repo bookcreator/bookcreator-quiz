@@ -1,0 +1,9 @@
+.container {
+}
+
+.score {
+  font-size: 18px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}

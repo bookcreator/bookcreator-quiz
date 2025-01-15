@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  padding: 5px 30px;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 30px;
+  border: 1px solid #f3f3f3;
+  margin: 0 0 5px;
+}
+
+.container:not(.chosen):hover,
+.container:not(.chosen):focus {
+  border-color: #ddd;
+}
+
+.chosen {
+  border-color: #1374e2;
+}

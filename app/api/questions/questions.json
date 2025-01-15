@@ -1,0 +1,17 @@
+[
+  {
+    "title": "What’s the national animal of Australia?",
+    "answers": ["Red Kangaroo", "Blue Koala", "Pink Prawn", "Silver Snake"],
+    "correctAnswer": 0
+  },
+  {
+    "title": "Which animal has the most teeth?",
+    "answers": ["Great white shark", "Worm", "Snail", "Pirahna"],
+    "correctAnswer": 2
+  },
+  {
+    "title": "What object does a male penguin often gift to a female penguin to win her over?",
+    "answers": ["Ring", "Chocolate bar", "Pebble", "Coat"],
+    "correctAnswer": 2
+  }
+]
