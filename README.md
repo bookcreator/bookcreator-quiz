@@ -20,13 +20,14 @@ We'll use the following rubric to evaluate your submission.
 2. Is the user's score in view?
 3. Have they used pagination or virtulaisation or are all 10k scores rendered?
 4. Have they added any embellishments?
-5. Is the code clean, readable and well structured?
-6. Have they thought about testing? (Comprehensive tests are not expected but some consideration of testability would be nice to see.)
+5. Can I still build and run the code locally from a clean checkout?
+6. Is the code clean, readable and well structured?
+7. Have they thought about testing? (Comprehensive tests are not expected but some consideration of testability would be nice to see.)
 
-Are there any restrictions?
+## Are there any restrictions?
 Not really, go wild! Feel free to add any dependencies you need (although we might ask you to justify your decisions at the interview stage). Use AI coding tools (but be prepared to stand by the code you submit). Spend as much or as little time as you want (we think that you should be able to achieve something cool in an hour or two and you might get penalised if we feel you've over engineered things.)
 
-How do I submit the test?
+## How do I submit the test?
 Make a PR against this repo.
 
 Feel free to contact the person who sent you this test if you have any questions at all. Good luck!
