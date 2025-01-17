@@ -1,43 +1,32 @@
 # Book Creator Quiz
 
-The next evolution of the Book Creator app is here - yes, it's Book Creator Quiz. Not really, this repl is the candidate test for the Book Creator engineering team.
+The purpose of this test is mainly for us to get an idea of your technical capability. It will also serve as a starting point for discussions about how you think about and communicate the decisions you make when you write code, should you get through to the next stage.
 
-## Software Engineer Role
+## What is the task?
 
-Your task is to implement a leaderboard so that someone who has completed the quiz can see how they did in relation to other people.
+The results page is not looking great. It currently has leaderboard data from the API which returns 10,000 mocked existing scores with the user's submission included. Everyone has their score out of 3 for their answered questions, plus a random 'skill' score of between 0 and 3000 (otherwise there would be 10k rows of scores between 0-3). The task is to finish the results page so that the leaderboard data is presented in a reasonable way.
 
-### Steps
+If you have time then you could add some further embellishments. To kick start your thinking, here are some ideas. Feel free to pick one of these if your creative juices aren't flowing today.
+1. Capture the user's name at the start of the quiz and use that in the leaderboard instead of "Player 1".
+2. Implement sorting on the leaderboard.
+3. Implement search or filtering on the leaderboard.
+4. Something else entirely.
 
-1. Fork this repl.
-2. Press the big green "Run" button at the top of your new fork.
-3. Have a nose around - we might want to discuss the code with you during the next stage of the hiring process.
-4. Do the task.
-5. Either invite [@DanPorter](https://replit.com/@DanPorter/) and [@tteggel](https://replit.com/@tteggel/) to your forked repl, or let us know that you're done and where your fork is. We will then fork your repl again and have a play.
+## What are we looking for?
 
-### Guidance
+We'll use the following rubric to evaluate your submission.
 
-You will probably want to use the [replit database](https://docs.replit.com/hosting/database-faq) to keep things simple but you should feel free to use any other APIs or technology. The only constraint is that we should be able to run your forked repl and use the site without any further set up required by us. You might use [replit auth](https://docs.replit.com/hosting/authenticating-users-repl-auth). Or you might not, up to you.
+1. Is the table well presented?
+2. Is the user's score in view?
+3. Have they used pagination or virtulaisation or are all 10k scores rendered?
+4. Have they added any embellishments?
+5. Is the code clean, readable and well structured?
+6. Have they thought about testing? (Comprehensive tests are not expected but some consideration of testability would be nice to see.)
 
-Don't spend too long on this - we think that the core task should be achievable in an hour or two but there are enough ways to gold-plate things that you could spend a week here. Please don't do that.
+Are there any restrictions?
+Not really, go wild! Feel free to add any dependencies you need (although we might ask you to justify your decisions at the interview stage). Use AI coding tools (but be prepared to stand by the code you submit). Spend as much or as little time as you want (we think that you should be able to achieve something cool in an hour or two and you might get penalised if we feel you've over engineered things.)
 
-The requirement is intentionally quite vague - we will accept any assumptions you make so long as you can justify them to us. Feel free to get in touch with the person that sent you this test if you want to ask any clarifying questions.
+How do I submit the test?
+Make a PR against this repo.
 
-Good luck!
-
-## Tester Role
-
-Explore, find bugs, investigate.
-
-### Steps
-
-1. Explore.
-2. Find bugs.
-3. Investigate.
-
-### Guidance
-
-There are bugs. We'd like you to talk us through how you found them, whether you can spot an obvious cause and what you think we should do about them.
-
-We'd also like your opinion on the existing unit tests as well as how you would approach adding end-to-end automation to this exciting project.
-
-Good luck!
+Feel free to contact the person who sent you this test if you have any questions at all. Good luck!
