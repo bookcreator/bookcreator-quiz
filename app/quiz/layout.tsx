@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Header from "../../components/header";
 import Page from "../../components/page";
 import Content from "../../components/content";
-import { AppWrapper } from "../../context/quiz";
 
 // export const metadata: Metadata = {
 //   title: "Book Creator Quiz",
@@ -16,11 +15,9 @@ export default function QuizLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AppWrapper>
-      <Page>
-        <Header title="Book Creator" subtitle="Quiz" />
-        <Content>{children}</Content>
-      </Page>
-    </AppWrapper>
+    <Page>
+      <Header title="Book Creator" subtitle="Quiz" />
+      <Content>{children}</Content>
+    </Page>
   );
 }

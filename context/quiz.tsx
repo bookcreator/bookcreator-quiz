@@ -1,3 +1,5 @@
+"use client";
+
 import { QuizQuestion, UserAnswers } from "@/types/quiz";
 import { createContext, useEffect, useContext, useState } from "react";
 
@@ -12,12 +14,15 @@ export const QuizContext = createContext({
   }) => {},
   questions: [] as QuizQuestion[],
   failed: false,
+  userName: "",
+  setUserName: (name: string) => {},
 });
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({});
   const [failed, setFailed] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     const loadQuestions = async () => {
@@ -56,6 +61,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         answerQuestion,
         questions,
         failed,
+        userName,
+        setUserName,
       }}
     >
       {children}

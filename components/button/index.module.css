@@ -1,9 +1,9 @@
 .button {
   background: #1374e2;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   border: none;
   background: linear-gradient(180deg, #ffd600 0%, #ffcd1d 6.96%, #ffae28 100%);
-  color: #652f00;
+  color: var(--text-secondary-color);
   font-size: 18px;
   padding: 10px 20px;
   font-weight: 500;
@@ -26,8 +26,14 @@
 
 .large {
   font-size: 28px;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   padding: 15px 30px;
+}
+
+.small {
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .text,

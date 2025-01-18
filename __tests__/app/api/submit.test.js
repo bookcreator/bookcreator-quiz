@@ -6,6 +6,7 @@ import { POST } from "../../../app/api/submit/route";
 const requestObj = {
   json: async () => ({
     answers: { 0: 1, 1: 0, 2: 2 },
+    userName: "Player 1"
   }),
 };
 

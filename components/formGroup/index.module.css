@@ -1,0 +1,15 @@
+.group:not(:only-child):not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
