@@ -13,12 +13,8 @@ export type ResultAnswer = {
 };
 
 export type QuizResult = {
-  answers: ResultAnswer[];
-  userName: string;
-  userScore: number;
-  skillScore: number;
-  totalScore: number;
   leaderboard: Leaderboard;
+  totalPages: number;
 };
 
 export type Leaderboard = LeaderboardEntry[];
@@ -28,3 +24,5 @@ export type LeaderboardEntry = {
   name: string;
   score: number;
 };
+
+export type SortType = "Score" | "Name";

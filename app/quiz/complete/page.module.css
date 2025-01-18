@@ -1,9 +1,81 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .score {
   font-size: 18px;
   max-width: 500px;
-  margin: 0 auto;
+  margin: 24px auto;
   text-align: center;
+}
+
+.share {
+  font-size: 16px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.leaderboard {
+  width: 90vw; /* Set the width to 90% of the viewport width */
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+}
+
+.leaderboard th,
+.leaderboard td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.leaderboard th.rank,
+.leaderboard td.rank {
+  width: 20%;
+}
+
+.leaderboard th.name,
+.leaderboard td.name {
+  width: 60%;
+}
+
+.leaderboard th.score,
+.leaderboard td.score {
+  width: 20%;
+}
+
+.leaderboard th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.leaderboard tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.leaderboard tr:hover {
+  background-color: #ddd;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 12px;
+}
+
+.options {
+  display: flex;
+  gap: 8px;
+}
+
+.sorttype {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
 }

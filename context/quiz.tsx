@@ -1,3 +1,5 @@
+"use client";
+
 import { QuizQuestion, UserAnswers } from "@/types/quiz";
 import { createContext, useEffect, useContext, useState } from "react";
 
@@ -12,12 +14,21 @@ export const QuizContext = createContext({
   }) => {},
   questions: [] as QuizQuestion[],
   failed: false,
+  userName: "",
+  assignUserName: (name: string) => {},
+  userScore: 0,
+  assignUserScore: (score: number) => {},
+  skillScore: 0,
+  assignSkillScore: (score: number) => {},
 });
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({});
   const [failed, setFailed] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userScore, setUserScore] = useState(0);
+  const [skillScore, setSkillScore] = useState(0);
 
   useEffect(() => {
     const loadQuestions = async () => {
@@ -32,6 +43,18 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     };
     loadQuestions();
   }, []);
+
+  const assignUserName = (name: string) => {
+    setUserName(name);
+  };
+
+  const assignUserScore = (score: number) => {
+    setUserScore(score);
+  };
+
+  const assignSkillScore = (score: number) => {
+    setSkillScore(score);
+  };
 
   const answerQuestion = ({
     questionNumber,
@@ -56,6 +79,12 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         answerQuestion,
         questions,
         failed,
+        userName,
+        assignUserName,
+        userScore,
+        assignUserScore,
+        skillScore,
+        assignSkillScore,
       }}
     >
       {children}

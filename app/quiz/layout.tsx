@@ -16,11 +16,9 @@ export default function QuizLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AppWrapper>
-      <Page>
-        <Header title="Book Creator" subtitle="Quiz" />
-        <Content>{children}</Content>
-      </Page>
-    </AppWrapper>
+    <Page>
+      <Header title="Book Creator" subtitle="Quiz" />
+      <Content>{children}</Content>
+    </Page>
   );
 }

@@ -1,18 +1,24 @@
 "use client";
 import { useContext } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { QuizContext } from "../../../../context/quiz";
 import Answers from "../../../../components/quiz/answers";
 import Button from "../../../../components/button";
 import styles from "./page.module.css";
 
 export default function QuizPage() {
-  const ctx = useContext(QuizContext);
+  const {
+    answerQuestion,
+    userAnswers,
+    questions,
+    userName,
+    assignUserScore,
+    assignSkillScore,
+  } = useContext(QuizContext);
   const params = useParams();
+  const router = useRouter();
 
-  const { answerQuestion, userAnswers, questions } = ctx;
-
-  if (!params.number || !questions) return null; // Set in a useEffect so undefined on first render
+  if (!params.number || !questions) return null;
 
   const pageNumber = Number(params.number);
   const questionIndex = pageNumber - 1;
@@ -21,6 +27,37 @@ export default function QuizPage() {
   const isLastQuestion = pageNumber === questions.length;
 
   if (!question) return null;
+
+  const handleButtonClick = async () => {
+    const lastPage = Object.keys(userAnswers).length === questions.length;
+    if (lastPage) {
+      try {
+        const response = await fetch("/api/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userAnswers,
+            userName,
+          }),
+        });
+
+        if (response.ok) {
+          const { userScore, skillScore } = await response.json();
+          assignUserScore(userScore);
+          assignSkillScore(skillScore);
+          router.push(`/quiz/complete`);
+        } else {
+          console.error("Failed to submit quiz");
+        }
+      } catch (error) {
+        console.error("Error submitting quiz:", error);
+      }
+    } else {
+      router.push(`/quiz/question/${pageNumber + 1}`);
+    }
+  };
 
   return (
     <div>
@@ -47,11 +84,7 @@ export default function QuizPage() {
           </Button>
         ) : null}
         <Button
-          href={
-            Object.keys(userAnswers).length === questions.length
-              ? `/quiz/complete`
-              : `/quiz/question/${pageNumber + 1}`
-          }
+          onClick={handleButtonClick}
           disabled={
             userAnswers[(pageNumber - 1) as keyof typeof userAnswers] ===
             undefined
