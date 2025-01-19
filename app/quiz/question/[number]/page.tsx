@@ -14,6 +14,7 @@ export default function QuizPage() {
     userName,
     assignUserScore,
     assignSkillScore,
+    assignScoreId,
   } = useContext(QuizContext);
   const params = useParams();
   const router = useRouter();
@@ -44,9 +45,10 @@ export default function QuizPage() {
         });
 
         if (response.ok) {
-          const { userScore, skillScore } = await response.json();
+          const { userScore, skillScore, scoreId } = await response.json();
           assignUserScore(userScore);
           assignSkillScore(skillScore);
+          assignScoreId(scoreId);
           router.push(`/quiz/complete`);
         } else {
           console.error("Failed to submit quiz");

@@ -16,6 +16,7 @@ export async function POST(request: Request) {
 
   const scores = await prisma.score.findMany({
     select: {
+      id: true,
       name: true,
       score: true,
     },

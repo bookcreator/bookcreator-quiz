@@ -8,7 +8,7 @@ import { POST } from "../../../app/api/submit/route";
 jest.mock("@prisma/client", () => {
   const mPrismaClient = {
     score: {
-      create: jest.fn(),
+      create: jest.fn().mockResolvedValue({ id: "test-id" }),
     },
   };
   return { PrismaClient: jest.fn(() => mPrismaClient) };
@@ -25,8 +25,9 @@ it("should return data with status 200", async () => {
   const response = await POST(requestObj);
   const body = await response.json();
   expect(response.status).toBe(200);
-  expect(Object.keys(body)).toEqual(["userScore", "skillScore"]);
+  expect(Object.keys(body)).toEqual(["userScore", "skillScore", "scoreId"]);
   expect(body.userScore).toEqual(1);
   expect(body.skillScore).toBeGreaterThan(-1);
   expect(body.skillScore).toBeLessThan(3001);
+  expect(body.scoreId).toEqual("test-id");
 });

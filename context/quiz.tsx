@@ -20,6 +20,8 @@ export const QuizContext = createContext({
   assignUserScore: (score: number) => {},
   skillScore: 0,
   assignSkillScore: (score: number) => {},
+  scoreId: "",
+  assignScoreId: (id: string) => {},
 });
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
@@ -29,6 +31,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [userName, setUserName] = useState("");
   const [userScore, setUserScore] = useState(0);
   const [skillScore, setSkillScore] = useState(0);
+  const [scoreId, setScoreId] = useState("");
 
   useEffect(() => {
     const loadQuestions = async () => {
@@ -54,6 +57,10 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
 
   const assignSkillScore = (score: number) => {
     setSkillScore(score);
+  };
+
+  const assignScoreId = (id: string) => {
+    setScoreId(id);
   };
 
   const answerQuestion = ({
@@ -85,6 +92,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         assignUserScore,
         skillScore,
         assignSkillScore,
+        scoreId,
+        assignScoreId,
       }}
     >
       {children}

@@ -1,49 +1,61 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useContext, useState } from "react";
 import { QuizContext } from "../../../context/quiz";
 import styles from "./page.module.css";
-import { QuizResult, SortType } from "@/types/quiz";
-import Button from "@/components/button";
+import { SortType } from "@/types/quiz";
 import Dropdown from "@/components/dropdown";
+import LeaderboardTable from "@/components/leaderboard-table";
+import Pagination from "@/components/pagination";
+import UserScore from "@/components/user-score";
+import useLeaderboard from "@/hooks/useLeaderboard";
+import Input from "@/components/input";
 
 export default function QuizComplete() {
-  const { userName, userScore, skillScore } = useContext(QuizContext);
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [result, setResult] = useState<QuizResult>();
-  const [_, setFailed] = useState(false);
+  const { userName, userScore, skillScore, scoreId } = useContext(QuizContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(20);
   const [sortType, setSortType] = useState<SortType>("Score");
+  const [filterText, setFilterText] = useState("");
 
-  useEffect(() => {
-    const loadResults = async (page: number, resultsPerPage: number) => {
-      try {
-        const res = await fetch("/api/leaderboard", {
-          method: "POST",
-          body: JSON.stringify({
-            page,
-            resultsPerPage,
-            sortType,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        setResult(await res.json());
-      } catch (e) {
-        setFailed(true);
-        console.error(e);
-      }
-    };
-    loadResults(currentPage, resultsPerPage);
-  }, [router, currentPage, resultsPerPage, searchParams, sortType]);
+  const { result, failed } = useLeaderboard(
+    currentPage,
+    resultsPerPage,
+    sortType
+  );
 
   if (!result) return null;
 
-  const { leaderboard, totalPages } = result;
+  let { leaderboard, totalPages } = result;
+
+  if (userScore && skillScore && userName) {
+    const userEntry = {
+      id: scoreId,
+      name: userName,
+      score: userScore + skillScore,
+      added: true,
+    };
+
+    const existingEntryIndex = leaderboard.findIndex(
+      (entry) => entry.id === scoreId
+    );
+
+    if (existingEntryIndex === -1) {
+      if (sortType === "Name") {
+        leaderboard = [...leaderboard, userEntry].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+      } else if (sortType === "Score") {
+        leaderboard = [...leaderboard, userEntry].sort(
+          (a, b) => b.score - a.score
+        );
+      }
+    }
+  }
+
+  const filteredLeaderboard = leaderboard.filter((user) =>
+    user.name.toLowerCase().includes(filterText.toLowerCase())
+  );
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -57,8 +69,6 @@ export default function QuizComplete() {
     }
   };
 
-  const startIndex = (currentPage - 1) * resultsPerPage;
-
   const handlePageSizeChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -71,41 +81,36 @@ export default function QuizComplete() {
     setSortType(event.target.value as SortType);
   };
 
+  const handleFilterTextChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setFilterText(event.target.value);
+  };
+
+  // Full text search is relatively simple to set up when not using SQLite for Prisma
+  // However, since SQLite is so much easier for the development scope I've decided to omit it for this project
+  // https://www.prisma.io/docs/orm/prisma-client/queries/full-text-search
+  // A more basic filter that only filters on names returned after pagination is provided for example
+
+  if (failed) {
+    return <p>Failed to load leaderboard</p>;
+  }
+
   return (
     <div className={styles.container}>
       {userScore ? (
-        <>
-          <p className={styles.score}>
-            🎉 <strong>{userName}</strong>, you answered{" "}
-            <strong>{userScore}</strong> question
-            {userScore === 1 ? "" : "s"} correctly and gained a skill score of{" "}
-            <strong>{skillScore}</strong>, giving you a total score of{" "}
-            <strong>{userScore + skillScore}</strong> 🎉
-          </p>
-          <strong>
-            <a
-              className={styles.share}
-              href={`https://twitter.com/intent/tweet?text=I%20scored%20${
-                userScore + skillScore
-              }%20on%20the%20Book%20Creator%20Quiz!`}
-              data-size="large"
-            >
-              Share your score! 🐦
-            </a>
-          </strong>
-        </>
+        <UserScore
+          userName={userName}
+          userScore={userScore}
+          skillScore={skillScore}
+        />
       ) : null}
-      <div className={styles.pagination}>
-        <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
-          Previous
-        </Button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next
-        </Button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePreviousPage={handlePreviousPage}
+        handleNextPage={handleNextPage}
+      />
       <div className={styles.options}>
         <Dropdown
           onChange={handlePageSizeChange}
@@ -115,27 +120,21 @@ export default function QuizComplete() {
         <Dropdown
           onChange={handleSortTypeChange}
           defaultValue={sortType}
-          values={["Score", "Name"]}
+          values={["Name", "Score"]}
+        />
+        <Input
+          text={filterText}
+          handleTextChange={handleFilterTextChange}
+          placeholder="Filter by name"
         />
       </div>
-      <table className={styles.leaderboard}>
-        <thead>
-          <tr>
-            <th className={styles.rank}>Rank</th>
-            <th className={styles.name}>Name</th>
-            <th className={styles.score}>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboard.map((entry, index) => (
-            <tr key={index}>
-              <td className={styles.rank}>{startIndex + index + 1}</td>
-              <td className={styles.name}>{entry.name}</td>
-              <td className={styles.score}>{entry.score}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <LeaderboardTable
+        leaderboard={filteredLeaderboard}
+        sortType={sortType}
+        startIndex={(currentPage - 1) * resultsPerPage}
+        pageSize={resultsPerPage}
+        scoreId={scoreId}
+      />
     </div>
   );
 }

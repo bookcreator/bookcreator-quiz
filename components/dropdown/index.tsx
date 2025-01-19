@@ -1,6 +1,4 @@
 import styles from "./index.module.css";
-import SvgIcon from "../svg-icon";
-import cx from "classnames";
 
 interface DropdownProps<T> {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;

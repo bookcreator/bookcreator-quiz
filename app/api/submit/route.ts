@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   const skillScore = Math.floor(Math.random() * 3000);
   const totalScore = userScore + skillScore;
 
-  await prisma.score.create({
+  const { id } = await prisma.score.create({
     data: {
       name: userName,
       score: totalScore,
@@ -35,6 +35,7 @@ export async function POST(request: Request) {
     JSON.stringify({
       userScore,
       skillScore,
+      scoreId: id,
     }),
     { status: 200, headers: { "Content-Type": "application/json" } }
   );

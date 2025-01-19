@@ -1,0 +1,47 @@
+.leaderboard {
+  width: 90vw;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+}
+
+.leaderboard th,
+.leaderboard td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.leaderboard th.rank,
+.leaderboard td.rank {
+  width: 20%;
+}
+
+.leaderboard th.name,
+.leaderboard td.name {
+  width: 60%;
+}
+
+.leaderboard th.score,
+.leaderboard td.score {
+  width: 20%;
+}
+
+.leaderboard th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.leaderboard tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.leaderboard tr:hover {
+  background-color: #ddd;
+}
+
+.active {
+  color: #fff !important;
+  background-color: #52a254 !important;
+}
