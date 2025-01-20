@@ -29,7 +29,7 @@ export default function UserNameForm() {
 
   const handleClick = () => {
     if (!localUserName.trim()) {
-      setValidationError("Enter your name");
+      setValidationError("Name is required");
       return;
     }
 
@@ -49,6 +49,7 @@ export default function UserNameForm() {
       </FormGroup>
       <Button
         buttonClassName={styles.startButton}
+        disabled={!localUserName.trim()}
         large
         onClick={handleClick}
         type="button"

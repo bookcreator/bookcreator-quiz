@@ -3,7 +3,7 @@
   display: block;
   font-size: 24px;
   margin: 0 auto 0.5em;
-  color: #666;
+  color: var(--text-light-color);
 }
 
 .questionNumber small {

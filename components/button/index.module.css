@@ -21,7 +21,7 @@
 }
 
 .button:not(:disabled):hover {
-  background: #ffae28;
+  background: var(--primary-color);
 }
 
 .large {
@@ -47,7 +47,7 @@
 }
 
 .button.text:hover {
-  background: #f3f3f3;
+  background: var(--bg-light-color);
 }
 
 .icon {
@@ -56,9 +56,9 @@
 }
 
 .text.secondary {
-  color: #666;
+  color: var(--text-light-color);
 }
 
 .text.secondary .icon {
-  fill: #666;
+  fill: var(--text-light-color);
 }

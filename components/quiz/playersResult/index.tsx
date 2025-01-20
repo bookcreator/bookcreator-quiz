@@ -72,15 +72,15 @@ export default function PlayersResult(props: PlayersResultProps) {
   return (
     <>
       <div className={styles.topRow}>
-        <h3>Other Players</h3>
+        <h3>Players Ranking</h3>
         <FormGroup
           className={styles.queryField}
-          label="Search for the player's name"
+          label="Search by player name"
           isLabelHidden
         >
           <Input
             onChange={handleChange}
-            placeholder="Search for the player's name"
+            placeholder="Search by player name"
             variant="input"
           />
         </FormGroup>

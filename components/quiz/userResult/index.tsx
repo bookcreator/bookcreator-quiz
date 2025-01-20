@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
 
-interface PaginationProps {
+interface UserResultProps {
   skillScore: number;
   totalQuestions: number;
   totalScore: number;
@@ -10,7 +10,7 @@ interface PaginationProps {
 
 const SUCCESS_PERCENT = 0.8;
 
-export default function UserResult(props: PaginationProps) {
+export default function UserResult(props: UserResultProps) {
   const { skillScore, totalQuestions, totalScore, userName, userScore } = props;
 
   const successRate = Math.round(totalQuestions * SUCCESS_PERCENT);

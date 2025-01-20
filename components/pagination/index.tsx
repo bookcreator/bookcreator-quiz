@@ -3,7 +3,6 @@ import Button from "@/components/button";
 import styles from "./index.module.css";
 
 interface PaginationProps {
-  className?: string;
   currentPage: number;
   itemsPerPage: number;
   onPageChange: (value: number) => void;
@@ -13,8 +12,7 @@ interface PaginationProps {
 const MAX_LIMIT = 5;
 
 export default function Pagination(props: PaginationProps) {
-  const { className, currentPage, itemsPerPage, onPageChange, totalItems } =
-    props;
+  const { currentPage, itemsPerPage, onPageChange, totalItems } = props;
 
   const totalPageNumber = Math.ceil(totalItems / itemsPerPage);
 
@@ -49,7 +47,7 @@ export default function Pagination(props: PaginationProps) {
   if (totalPageNumber <= 1) return null;
 
   return (
-    <nav aria-label="pagination" className={cx(styles.pagination, className)}>
+    <nav aria-label="pagination" className={styles.pagination}>
       <Button
         disabled={currentPage === 1}
         onClick={handlePrevious}

@@ -27,12 +27,12 @@
   padding: 10px;
 }
 
-.label {
-  color: #696e7b;
-  display: block;
-  margin-top: 4px;
-}
-
 .detail + .detail {
   border-left: 1px solid var(--border-color);
+}
+
+.label {
+  color: var(--text-light-color);
+  display: block;
+  margin-top: 4px;
 }

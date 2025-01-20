@@ -1,9 +1,12 @@
 :root {
+  --bg-light-color: #f3f3f3;
   --text-color: #40444f;
   --text-secondary-color: #652f00;
+  --text-light-color: #666;
   --primary-color: #ffae28;
   --border-color: #f3f3f3;
   --active-color: #1374e2;
+  --error-color: red;
   --border-radius: 10px;
   --border-radius-small: 5px;
 }

@@ -1,11 +1,11 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { QuizContext } from "../../../context/quiz";
-import styles from "./page.module.css";
+import { QuizContext } from "@/context/quiz";
 import { QuizResult } from "@/types/quiz";
 import UserResult from "@/components/quiz/userResult";
-import PlayersResult from "@/components/quiz/playersList";
+import PlayersResult from "@/components/quiz/playersResult";
+import styles from "./page.module.css";
 
 export default function QuizComplete() {
   const { userAnswers, questions, userName } = useContext(QuizContext);
@@ -44,7 +44,7 @@ export default function QuizComplete() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Quize Summary</h1>
+      <h1 className={styles.title}>Quiz Summary</h1>
       <UserResult
         skillScore={skillScore}
         totalQuestions={questions?.length}
