@@ -28,6 +28,6 @@ We'll use the following rubric to evaluate your submission.
 Not really, go wild! Feel free to add any dependencies you need (although we might ask you to justify your decisions at the interview stage). Use AI coding tools (but be prepared to stand by the code you submit). Spend as much or as little time as you want (we think that you should be able to achieve something cool in an hour or two and you might get penalised if we feel you've over engineered things.)
 
 ## How do I submit the test?
-Make a PR against this repo.
+Make a private fork of this repo and make a PR against that. Invite @tteggel and @thebiffboff as reviewers.
 
 Feel free to contact the person who sent you this test if you have any questions at all. Good luck!
