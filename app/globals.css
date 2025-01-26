@@ -1,10 +1,23 @@
+:root {
+  --bg-light-color: #f3f3f3;
+  --text-color: #40444f;
+  --text-secondary-color: #652f00;
+  --text-light-color: #666;
+  --primary-color: #ffae28;
+  --border-color: #f3f3f3;
+  --active-color: #1374e2;
+  --error-color: red;
+  --border-radius: 10px;
+  --border-radius-small: 5px;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-  color: #40444f;
+  color: var(--text-color);
 }
 
 a {
@@ -14,4 +27,21 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  white-space: nowrap;
+  width: 1px;
 }

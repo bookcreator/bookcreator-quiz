@@ -1,0 +1,38 @@
+.container {
+  border-radius: var(--border-radius);
+  box-shadow: 2px 8px 30px 0px #ececec;
+  margin: 40px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.result {
+  padding: 10px 20px;
+}
+
+.scores {
+  line-height: 1.4;
+}
+
+.details {
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+}
+
+.detail {
+  flex: 1;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.detail + .detail {
+  border-left: 1px solid var(--border-color);
+}
+
+.label {
+  color: var(--text-light-color);
+  display: block;
+  margin-top: 4px;
+}

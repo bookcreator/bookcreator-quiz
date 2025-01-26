@@ -1,12 +1,14 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { QuizContext } from "../../../context/quiz";
+import { QuizContext } from "@/context/quiz";
+import { QuizResult } from "@/types/quiz";
+import UserResult from "@/components/quiz/userResult";
+import PlayersResult from "@/components/quiz/playersResult";
 import styles from "./page.module.css";
-import { QuizResult, UserAnswers } from "@/types/quiz";
 
 export default function QuizComplete() {
-  const { userAnswers } = useContext(QuizContext);
+  const { userAnswers, questions, userName } = useContext(QuizContext);
   const router = useRouter();
   const [result, setResult] = useState<QuizResult>();
   const [failed, setFailed] = useState(false);
@@ -21,7 +23,7 @@ export default function QuizComplete() {
       try {
         const res = await fetch("/api/submit", {
           method: "POST",
-          body: JSON.stringify({ answers: userAnswers }),
+          body: JSON.stringify({ answers: userAnswers, userName }),
           headers: {
             "Content-Type": "application/json",
           },
@@ -38,18 +40,19 @@ export default function QuizComplete() {
 
   if (!result) return null;
 
-  const { userName, userScore, skillScore, totalScore, leaderboard } = result;
-
-  console.log({ leaderboard });
+  const { userScore, skillScore, totalScore, leaderboard } = result;
 
   return (
     <div className={styles.container}>
-      <p className={styles.score}>
-        🎉 <strong>{userName}</strong>, you answered{" "}
-        <strong>{userScore}</strong> questions correctly and gained a skill
-        score of <strong>{skillScore}</strong>, giving you a total score of{" "}
-        <strong>{totalScore}</strong> 🎉
-      </p>
+      <h1 className={styles.title}>Quiz Summary</h1>
+      <UserResult
+        skillScore={skillScore}
+        totalQuestions={questions?.length}
+        totalScore={totalScore}
+        userName={userName}
+        userScore={userScore}
+      />
+      <PlayersResult leaderboard={leaderboard} />
     </div>
   );
 }

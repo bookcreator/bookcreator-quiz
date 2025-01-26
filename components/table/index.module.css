@@ -1,0 +1,41 @@
+.table {
+  max-width: 100%;
+  min-width: 660px;
+  overflow-x: auto;
+}
+
+@media (max-width: 767px) {
+  .table {
+    min-width: 100%;
+  }
+}
+
+.row {
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row:not(.rowHead) {
+  min-height: 40px;
+}
+
+.col {
+  flex: 1;
+  padding: 10px 15px;
+}
+
+.colHead {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.col:first-child {
+  flex: 15% 0 0;
+}
+
+.col:last-child {
+  flex: 15% 0 0;
+}

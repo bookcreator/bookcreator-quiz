@@ -1,4 +1,4 @@
-import Button from "../components/button";
+import UserNameForm from "@/components/quiz/userNameForm";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -6,9 +6,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <h1 className={styles.title}>Book Creator Quiz</h1>
-        <Button large href="/quiz/question/1">
-          Start
-        </Button>
+        <UserNameForm />
       </main>
     </div>
   );

@@ -1,9 +1,9 @@
 .button {
   background: #1374e2;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   border: none;
   background: linear-gradient(180deg, #ffd600 0%, #ffcd1d 6.96%, #ffae28 100%);
-  color: #652f00;
+  color: var(--text-secondary-color);
   font-size: 18px;
   padding: 10px 20px;
   font-weight: 500;
@@ -21,13 +21,19 @@
 }
 
 .button:not(:disabled):hover {
-  background: #ffae28;
+  background: var(--primary-color);
 }
 
 .large {
   font-size: 28px;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   padding: 15px 30px;
+}
+
+.small {
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .text,
@@ -41,7 +47,7 @@
 }
 
 .button.text:hover {
-  background: #f3f3f3;
+  background: var(--bg-light-color);
 }
 
 .icon {
@@ -50,9 +56,9 @@
 }
 
 .text.secondary {
-  color: #666;
+  color: var(--text-light-color);
 }
 
 .text.secondary .icon {
-  fill: #666;
+  fill: var(--text-light-color);
 }

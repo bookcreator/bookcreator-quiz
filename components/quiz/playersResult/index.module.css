@@ -1,0 +1,50 @@
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.topRow > h3 {
+  margin: 0;
+}
+
+.place {
+  border-radius: 50%;
+  color: var(--text-color);
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  width: 28px;
+}
+
+.gold {
+  background: linear-gradient(180deg, #ffd600 0%, #ffcd1d 6.96%, #ffae28 100%);
+}
+
+.silver {
+  background: linear-gradient(180deg, #c0c0c0 0%, #d3d3d3 50%, #a9a9a9 100%);
+}
+
+.bronze {
+  background: linear-gradient(180deg, #cd7f32 0%, #b87333 50%, #8c4a2d 100%);
+  color: white;
+}
+
+@media (min-width: 568px) {
+  .queryField {
+    width: 260px;
+  }
+}
+
+@media (max-width: 567px) {
+  .topRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .queryField {
+    width: 100%;
+  }
+}

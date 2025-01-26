@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { AppWrapper } from "@/context/quiz";
 import styles from "./layout.module.css";
 import "./globals.css";
 
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto.className}>
       <body>
-        <div className={styles.container}>{children}</div>
+        <AppWrapper>
+          <div className={styles.container}>{children}</div>
+        </AppWrapper>
       </body>
     </html>
   );
